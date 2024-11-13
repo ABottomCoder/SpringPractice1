@@ -1,10 +1,12 @@
 package com.example.SpringPractice1.customer;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Customer {
     private final Long id;
     private final String name;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private final String password;
 
 
@@ -22,6 +24,7 @@ public class Customer {
         return name;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
