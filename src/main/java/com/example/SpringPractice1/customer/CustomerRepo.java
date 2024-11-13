@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 public interface CustomerRepo {
-    List<Customer> getCustomer();
+    List<Customer> getCustomers();
 }
