@@ -9,23 +9,20 @@ import java.util.List;
 
 @Service
 public class CustomerService {
-    private final CustomerRepo customerRepo;
+    private final CustomerRepository customerRepository;
 
     @Autowired
-    public CustomerService(CustomerRepo customerRepo) {
-        this.customerRepo = customerRepo;
+    public CustomerService(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
     }
 
     Customer getCustomer(Long id) {
-        return getCustomers()
-                .stream()
-                .filter(customer -> customer.getId().equals(id))
-                .findFirst()
+        return customerRepository.findById(id)
                 .orElseThrow(()->new NotFoundException(
                         "Customer with id " + id + " not found"));
     }
 
     public List<Customer> getCustomers() {
-        return this.customerRepo.getCustomers();
+        return this.customerRepository.findAll();
     }
 }
